@@ -14,7 +14,7 @@
         var ctx = canvas.getContext("2d");
         var anterior = 0;
         var dt = 0;
-        var pc = new Sprite();
+        var pc = new Sprite({vx:10});
 
         function passo(t){
             dt = (t- anterior)/1000;
