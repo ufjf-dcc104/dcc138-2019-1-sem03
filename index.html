@@ -15,20 +15,32 @@
         var anterior = 0;
         var dt = 0;
         var pc = new Sprite({vx:10});
-        var npc = new Sprite({vx:-10, x: 100, y: 70});
+        var npc = [];
+        var NNPC = 10;
+        
+        for (var i = 0; i < NNPC; i++) {
+            npc[i] = new Sprite({
+                x: Math.random()*canvas.width,
+                y: Math.random()*canvas.height
+            });            
+        }
         function passo(t){
             dt = (t- anterior)/1000;
             ctx.fillStyle = "tan";
             ctx.fillRect(0,0, canvas.width, canvas.height);
 
             pc.mover(dt);
-            npc.perseguir(pc);
-            npc.mover(dt);
+            for (var i = 0; i < npc.length; i++) {
+                npc[i].perseguir(pc);
+                npc[i].mover(dt);
+            }
             pc.desenhar(ctx);
-            npc.desenhar(ctx);
-            if(pc.colidiuCom(npc)){
-                npc.x = Math.random()*canvas.width;
-                npc.y = Math.random()*canvas.height;
+            for (var i = 0; i < npc.length; i++) {
+                npc[i].desenhar(ctx);
+                if(pc.colidiuCom(npc[i])){
+                    npc[i].x = Math.random()*canvas.width;
+                    npc[i].y = Math.random()*canvas.height;
+                }
             }
             anterior = t;
             requestAnimationFrame(passo);
