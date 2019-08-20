@@ -21,7 +21,8 @@
         for (var i = 0; i < NNPC; i++) {
             npc[i] = new Sprite({
                 x: Math.random()*canvas.width,
-                y: Math.random()*canvas.height
+                y: Math.random()*canvas.height,
+                color: "rgb("+(i*25)+",0,0)"
             });            
         }
         function passo(t){

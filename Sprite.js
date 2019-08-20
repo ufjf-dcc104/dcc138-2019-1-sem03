@@ -4,7 +4,8 @@ function Sprite(exemplo) {
         y = 100,
         w = 10,
         vx = 0,
-        vy = 0
+        vy = 0,
+        color = "blue"
     } = exemplo;
     this.x = x;
     this.y = y;
@@ -13,6 +14,7 @@ function Sprite(exemplo) {
 
     this.vx = vx;
     this.vy = vy;
+    this.color = color;
  
 }
 
@@ -20,7 +22,7 @@ Sprite.prototype = new Sprite({});
 Sprite.constructor = Sprite;
 
 Sprite.prototype.desenhar = function (ctx) {
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = this.color;
     ctx.strokeStyle = "black";
     ctx.fillRect(this.x, this.y, this.w, this.w);
 }
