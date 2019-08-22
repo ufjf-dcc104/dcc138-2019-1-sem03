@@ -5,7 +5,8 @@ function Sprite(exemplo = {}) {
         w = 10,
         vx = 0,
         vy = 0,
-        color = "blue"
+        color = "blue",
+        imune = 0
     } = exemplo;
     this.x = x;
     this.y = y;
@@ -15,7 +16,7 @@ function Sprite(exemplo = {}) {
     this.vx = vx;
     this.vy = vy;
     this.color = color;
-
+    this.imune = imune;
 }
 
 Sprite.prototype = new Sprite({});
@@ -24,12 +25,19 @@ Sprite.constructor = Sprite;
 Sprite.prototype.desenhar = function (ctx) {
     ctx.fillStyle = this.color;
     ctx.strokeStyle = "black";
+    if(this.imune > 0){
+      ctx.globalAlpha = 0.5*Math.cos(60*this.imune);
+    }
     ctx.fillRect(this.x, this.y, this.w, this.w);
+    ctx.globalAlpha = 1.0;
 }
 
 Sprite.prototype.mover = function (dt) {
     this.x = this.x + this.vx * dt;
     this.y = this.y + this.vy * dt;
+    if(this.imune > 0) {
+        this.imune = this.imune - 1*dt;
+    }
 }
 
 Sprite.prototype.colidiuCom = function (alvo) {
