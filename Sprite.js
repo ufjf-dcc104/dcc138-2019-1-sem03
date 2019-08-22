@@ -1,4 +1,4 @@
-function Sprite(exemplo) {
+function Sprite(exemplo = {}) {
     var {
         x = 10,
         y = 100,
@@ -15,7 +15,7 @@ function Sprite(exemplo) {
     this.vx = vx;
     this.vy = vy;
     this.color = color;
- 
+
 }
 
 Sprite.prototype = new Sprite({});
@@ -32,17 +32,30 @@ Sprite.prototype.mover = function (dt) {
     this.y = this.y + this.vy * dt;
 }
 
-Sprite.prototype.colidiuCom = function(alvo){
-    if(alvo.x+alvo.w < this.x) return false;
-    if(alvo.x > this.x+this.w) return false;
-    if(alvo.y+alvo.w < this.y) return false;
-    if(alvo.y > this.y+this.w) return false;
-    
+Sprite.prototype.colidiuCom = function (alvo) {
+    if (alvo.x + alvo.w < this.x) return false;
+    if (alvo.x > this.x + this.w) return false;
+    if (alvo.y + alvo.w < this.y) return false;
+    if (alvo.y > this.y + this.w) return false;
+
     return true;
 
 }
 
-Sprite.prototype.perseguir = function (alvo) {
-    this.vx = 20*Math.sign(alvo.x - this.x);
-    this.vy = 20*Math.sign(alvo.y - this.y);
+Sprite.prototype.perseguir = function (opcoes) {
+    this.vx = 20 * Math.sign(opcoes.alvo.x - this.x);
+    this.vy = 20 * Math.sign(opcoes.alvo.y - this.y);
+}
+
+Sprite.prototype.controlePorTeclas = function (opcoes) {
+    if (opcoes.teclas.esquerda) { this.vx = -50; }
+    if (opcoes.teclas.direita) { this.vx = 50; }
+    if (!opcoes.teclas.esquerda && !opcoes.teclas.direita){
+        this.vx = 0;
+    }
+    if (opcoes.teclas.cima) { this.vy = -50; }
+    if (opcoes.teclas.baixo) { this.vy = 50; }
+    if (!opcoes.teclas.cima && !opcoes.teclas.baixo){
+        this.vy = 0;
+    }
 }
