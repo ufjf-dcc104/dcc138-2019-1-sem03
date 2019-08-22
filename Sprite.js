@@ -21,8 +21,8 @@ function Sprite(exemplo = {}) {
     this.atirando = atirando;
 }
 
-Sprite.prototype = new Sprite({});
-Sprite.constructor = Sprite;
+Sprite.prototype = new Sprite();
+Sprite.prototype.constructor = Sprite;
 
 Sprite.prototype.desenhar = function (ctx) {
     ctx.fillStyle = this.color;
