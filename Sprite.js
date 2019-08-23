@@ -4,10 +4,14 @@ function Sprite(exemplo = {}) {
         y = 100,
         w = 10,
         vx = 0,
+<<<<<<< HEAD
         vy = 0,
         color = "blue",
         imune = 0,
         atirando = 0,
+=======
+        vy = 0
+>>>>>>> parent of 8178caf... Adiciona cores
     } = exemplo;
     this.x = x;
     this.y = y;
@@ -16,16 +20,20 @@ function Sprite(exemplo = {}) {
 
     this.vx = vx;
     this.vy = vy;
+<<<<<<< HEAD
     this.color = color;
     this.imune = imune;
     this.atirando = atirando;
+=======
+ 
+>>>>>>> parent of 8178caf... Adiciona cores
 }
 
 Sprite.prototype = new Sprite();
 Sprite.prototype.constructor = Sprite;
 
 Sprite.prototype.desenhar = function (ctx) {
-    ctx.fillStyle = this.color;
+    ctx.fillStyle = "blue";
     ctx.strokeStyle = "black";
     if(this.imune > 0){
       ctx.globalAlpha = 0.5*Math.cos(60*this.imune);
