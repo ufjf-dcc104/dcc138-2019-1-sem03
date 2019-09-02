@@ -4,14 +4,10 @@ function Sprite(exemplo = {}) {
         y = 100,
         w = 10,
         vx = 0,
-<<<<<<< HEAD
         vy = 0,
         color = "blue",
         imune = 0,
         atirando = 0,
-=======
-        vy = 0
->>>>>>> parent of 8178caf... Adiciona cores
     } = exemplo;
     this.x = x;
     this.y = y;
@@ -20,13 +16,9 @@ function Sprite(exemplo = {}) {
 
     this.vx = vx;
     this.vy = vy;
-<<<<<<< HEAD
     this.color = color;
     this.imune = imune;
     this.atirando = atirando;
-=======
- 
->>>>>>> parent of 8178caf... Adiciona cores
 }
 
 Sprite.prototype = new Sprite();
@@ -63,20 +55,20 @@ Sprite.prototype.colidiuCom = function (alvo) {
 
 }
 
-Sprite.prototype.perseguir = function (opcoes) {
-    this.vx = 20 * Math.sign(opcoes.alvo.x - this.x);
-    this.vy = 20 * Math.sign(opcoes.alvo.y - this.y);
+Sprite.prototype.perseguir = function (alvo) {
+    this.vx = 20 * Math.sign(alvo.x - this.x);
+    this.vy = 20 * Math.sign(alvo.y - this.y);
 }
 
-Sprite.prototype.controlePorTeclas = function (opcoes) {
-    if (opcoes.teclas.esquerda) { this.vx = -50; }
-    if (opcoes.teclas.direita) { this.vx = 50; }
-    if (!opcoes.teclas.esquerda && !opcoes.teclas.direita){
+Sprite.prototype.controlePorTeclas = function (teclas) {
+    if (teclas.esquerda) { this.vx = -50; }
+    if (teclas.direita) { this.vx = 50; }
+    if (teclas.esquerda === teclas.direita){
         this.vx = 0;
     }
-    if (opcoes.teclas.cima) { this.vy = -50; }
-    if (opcoes.teclas.baixo) { this.vy = 50; }
-    if (!opcoes.teclas.cima && !opcoes.teclas.baixo){
+    if (teclas.cima) { this.vy = -50; }
+    if (teclas.baixo) { this.vy = 50; }
+    if (teclas.cima === teclas.baixo){
         this.vy = 0;
     }
 }

@@ -14,8 +14,7 @@
     <script>
         var canvas = document.querySelector("canvas");
         var ctx = canvas.getContext("2d");
-        var anterior = 0;
-        var dt = 0;
+        var dt, anterior = 0
         var pc = new Sprite({ vx: 10 });
         var npc = [];
         var tiros = [];
@@ -57,10 +56,10 @@
                 tiro = null;
             }
 
-            pc.controlePorTeclas({teclas: teclas});
+            pc.controlePorTeclas(teclas);
             pc.mover(dt);
             for (var i = 0; i < npc.length; i++) {
-                npc[i].perseguir({alvo: pc});
+                npc[i].perseguir(pc);
                 npc[i].mover(dt);
             }
             for (var i = 0; i < tiros.length; i++) {
